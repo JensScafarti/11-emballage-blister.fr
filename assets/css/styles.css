@@ -1756,3 +1756,75 @@ html[data-theme="light"] #cookieBanner > div {
 html[data-theme="light"] #cookieBannerOverlay {
   background: rgba(0, 0, 0, 0.3) !important;
 }
+
+/* ─── SCAFA International Footer Bar ─── */
+.scafa-intl-bar {
+  background: rgba(10, 14, 23, 0.4);
+}
+
+.scafa-intl-label {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #6DC424;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.scafa-intl-flags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 8px;
+}
+
+.scafa-intl-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.25s, background 0.25s;
+}
+
+.scafa-intl-link:hover {
+  color: #FFFFFF;
+  background: rgba(109, 196, 36, 0.08);
+}
+
+.scafa-intl-link--active {
+  color: #6DC424;
+  background: rgba(109, 196, 36, 0.06);
+}
+
+.scafa-intl-flag {
+  font-size: 14px;
+  line-height: 1;
+}
+
+html[data-theme="light"] .scafa-intl-bar {
+  background: rgba(226, 232, 240, 0.4);
+}
+
+html[data-theme="light"] .scafa-intl-label {
+  color: #4A8A1A;
+}
+
+html[data-theme="light"] .scafa-intl-link {
+  color: #475569;
+}
+
+html[data-theme="light"] .scafa-intl-link:hover {
+  color: #1A1A1A;
+  background: rgba(109, 196, 36, 0.1);
+}
+
+html[data-theme="light"] .scafa-intl-link--active {
+  color: #4A8A1A;
+  background: rgba(109, 196, 36, 0.08);
+}
