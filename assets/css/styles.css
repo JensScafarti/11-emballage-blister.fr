@@ -1163,6 +1163,23 @@ textarea.form-input {
   line-height: 1;
 }
 
+.lang-section-header {
+  margin-top: 6px;
+  padding: 8px 14px 4px;
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #6DC424;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-top: 1px solid rgba(109, 196, 36, 0.15);
+}
+
+html[data-theme="light"] .lang-section-header {
+  color: #4A8A1A;
+  border-top-color: rgba(74, 138, 26, 0.18);
+}
+
 /* Mobile lang switcher */
 .lang-switcher--mobile .lang-dropdown {
   position: static;

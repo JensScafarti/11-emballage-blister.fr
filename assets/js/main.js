@@ -417,6 +417,30 @@
       dropdown.appendChild(a);
     });
 
+    // SCAFA International Section: Deutschsprachige ccTLDs (AT + CH)
+    var regions = [
+      { hreflang: 'de-AT', flag: '🇦🇹', name: 'Österreich', fallback: 'https://blisterverpackung.at/' },
+      { hreflang: 'de-CH', flag: '🇨🇭', name: 'Schweiz',    fallback: 'https://blisterverpackung.ch/' }
+    ];
+    var hostname = window.location.hostname.toLowerCase();
+    var currentRegion = hostname.indexOf('blisterverpackung.at') !== -1 ? 'de-AT'
+                      : hostname.indexOf('blisterverpackung.ch') !== -1 ? 'de-CH' : null;
+    var availableRegions = regions.filter(function (r) { return links[r.hreflang] || r.fallback; });
+    if (availableRegions.length > 0) {
+      var sep = document.createElement('div');
+      sep.className = 'lang-section-header';
+      sep.textContent = 'SCAFA International';
+      dropdown.appendChild(sep);
+      availableRegions.forEach(function (r) {
+        var a = document.createElement('a');
+        a.href = links[r.hreflang] || r.fallback;
+        a.hreflang = r.hreflang;
+        a.className = 'lang-option' + (r.hreflang === currentRegion ? ' lang-option--active' : '');
+        a.innerHTML = '<span class="lang-flag">' + r.flag + '</span><span>' + r.name + '</span>';
+        dropdown.appendChild(a);
+      });
+    }
+
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       // Close all OTHER dropdowns first
@@ -579,32 +603,7 @@
     });
   });
 
-  // Inject desktop country picker (BEFORE language switcher)
-  if (desktopNav) {
-    var countryDesktop = createCountryPicker(false);
-    if (countryDesktop) {
-      var existingLangSwitcher = desktopNav.querySelector('.lang-switcher');
-      if (existingLangSwitcher) {
-        desktopNav.insertBefore(countryDesktop, existingLangSwitcher);
-      } else {
-        var themeBtn2 = desktopNav.querySelector('.theme-toggle');
-        if (themeBtn2) desktopNav.insertBefore(countryDesktop, themeBtn2);
-        else desktopNav.appendChild(countryDesktop);
-      }
-    }
-  }
-
-  // Inject mobile country picker (BEFORE language switcher)
-  if (mobileControls) {
-    var countryMobile = createCountryPicker(true);
-    if (countryMobile) {
-      var existingLangSwitcherMobile = mobileControls.querySelector('.lang-switcher');
-      if (existingLangSwitcherMobile) {
-        mobileControls.insertBefore(countryMobile, existingLangSwitcherMobile);
-      } else {
-        mobileControls.insertBefore(countryMobile, mobileControls.firstChild);
-      }
-    }
-  }
+  // Country-Picker deaktiviert — AT/CH sind jetzt im Sprach-Dropdown unter "SCAFA International"
+  // createCountryPicker() bleibt als Helper-Funktion im Code, wird aber nicht mehr injiziert.
 
 })();
