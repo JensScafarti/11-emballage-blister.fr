@@ -470,4 +470,141 @@
     }
   }
 
+
+  // ─── Country Picker (SCAFA International — alle 5 ccTLDs) ───
+  var COUNTRIES = [
+    { code: 'de', flag: '🇩🇪', name: 'Deutschland', hreflang: 'de',    fallback: 'https://www.blisterverpackung.de/' },
+    { code: 'at', flag: '🇦🇹', name: 'Österreich',  hreflang: 'de-AT', fallback: 'https://blisterverpackung.at/' },
+    { code: 'ch', flag: '🇨🇭', name: 'Schweiz',     hreflang: 'de-CH', fallback: 'https://blisterverpackung.ch/' },
+    { code: 'it', flag: '🇮🇹', name: 'Italia',      hreflang: 'it',    fallback: 'https://imballaggio-blister.it/' },
+    { code: 'fr', flag: '🇫🇷', name: 'France',      hreflang: 'fr',    fallback: 'https://emballage-blister.fr/' },
+  ];
+
+  function detectCurrentCountry() {
+    var hostname = window.location.hostname.toLowerCase();
+    if (hostname.indexOf('blisterverpackung.at') !== -1) return 'at';
+    if (hostname.indexOf('blisterverpackung.ch') !== -1) return 'ch';
+    if (hostname.indexOf('imballaggio-blister.it') !== -1) return 'it';
+    if (hostname.indexOf('emballage-blister.fr') !== -1) return 'fr';
+    return 'de';
+  }
+
+  function getCountryUrl(country) {
+    // Versuche zuerst hreflang-Tag — nutzt automatisch die richtige Slug-Übersetzung
+    var link = document.querySelector('link[rel="alternate"][hreflang="' + country.hreflang + '"]');
+    if (link && link.getAttribute('href')) {
+      return link.getAttribute('href');
+    }
+    // Fallback: Homepage der Country-Domain
+    return country.fallback;
+  }
+
+  var countryPickerInstances = [];
+
+  function createCountryPicker(isMobile) {
+    var currentCountry = detectCurrentCountry();
+    var currentCountryData = COUNTRIES.find(function (c) { return c.code === currentCountry; });
+    if (!currentCountryData) currentCountryData = COUNTRIES[0];
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'country-picker' + (isMobile ? ' country-picker--mobile' : '');
+    wrapper.style.position = 'relative';
+
+    var btn = document.createElement('button');
+    btn.className = 'country-btn';
+    var BTN_LABELS = {
+      de: 'Land wählen', at: 'Land wählen', ch: 'Land wählen',
+      it: 'Seleziona paese', fr: 'Sélectionner pays'
+    };
+    btn.setAttribute('aria-label', BTN_LABELS[currentCountry] || BTN_LABELS.de);
+    btn.innerHTML = '<span class="country-flag">' + currentCountryData.flag + '</span>' +
+                    '<svg class="country-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    var dropdown = document.createElement('div');
+    dropdown.className = 'country-dropdown';
+    dropdown.style.display = 'none';
+
+    // Header
+    var header = document.createElement('div');
+    header.className = 'country-dropdown-header';
+    var HEADER_TEXT = {
+      de: 'SCAFA International', at: 'SCAFA International', ch: 'SCAFA International',
+      it: 'SCAFA Internazionale', fr: 'SCAFA International'
+    };
+    header.textContent = HEADER_TEXT[currentCountry] || HEADER_TEXT.de;
+    dropdown.appendChild(header);
+
+    // Country options
+    COUNTRIES.forEach(function (country) {
+      var a = document.createElement('a');
+      a.href = getCountryUrl(country);
+      a.className = 'country-option' + (country.code === currentCountry ? ' country-option--active' : '');
+      a.innerHTML = '<span class="country-option-flag">' + country.flag + '</span>' +
+                    '<span class="country-option-name">' + country.name + '</span>' +
+                    (country.code === currentCountry ? '<span class="country-option-check">●</span>' : '');
+      dropdown.appendChild(a);
+    });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      // Close all other country dropdowns
+      countryPickerInstances.forEach(function (inst) {
+        if (inst.dropdown !== dropdown) {
+          inst.dropdown.style.display = 'none';
+          inst.wrapper.classList.remove('country-open');
+        }
+      });
+      // Also close lang switchers
+      langSwitcherInstances.forEach(function (inst) {
+        inst.dropdown.style.display = 'none';
+        inst.wrapper.classList.remove('lang-open');
+      });
+      var isOpen = dropdown.style.display !== 'none';
+      dropdown.style.display = isOpen ? 'none' : 'flex';
+      wrapper.classList.toggle('country-open', !isOpen);
+    });
+
+    countryPickerInstances.push({ wrapper: wrapper, dropdown: dropdown });
+
+    wrapper.appendChild(btn);
+    wrapper.appendChild(dropdown);
+    return wrapper;
+  }
+
+  // Close country pickers on outside click (extends existing handler)
+  document.addEventListener('click', function () {
+    countryPickerInstances.forEach(function (inst) {
+      inst.dropdown.style.display = 'none';
+      inst.wrapper.classList.remove('country-open');
+    });
+  });
+
+  // Inject desktop country picker (BEFORE language switcher)
+  if (desktopNav) {
+    var countryDesktop = createCountryPicker(false);
+    if (countryDesktop) {
+      var existingLangSwitcher = desktopNav.querySelector('.lang-switcher');
+      if (existingLangSwitcher) {
+        desktopNav.insertBefore(countryDesktop, existingLangSwitcher);
+      } else {
+        var themeBtn2 = desktopNav.querySelector('.theme-toggle');
+        if (themeBtn2) desktopNav.insertBefore(countryDesktop, themeBtn2);
+        else desktopNav.appendChild(countryDesktop);
+      }
+    }
+  }
+
+  // Inject mobile country picker (BEFORE language switcher)
+  if (mobileControls) {
+    var countryMobile = createCountryPicker(true);
+    if (countryMobile) {
+      var existingLangSwitcherMobile = mobileControls.querySelector('.lang-switcher');
+      if (existingLangSwitcherMobile) {
+        mobileControls.insertBefore(countryMobile, existingLangSwitcherMobile);
+      } else {
+        mobileControls.insertBefore(countryMobile, mobileControls.firstChild);
+      }
+    }
+  }
+
 })();

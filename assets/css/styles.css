@@ -1214,6 +1214,173 @@ html[data-theme="light"] .lang-switcher--mobile .lang-dropdown {
   border-color: rgba(0, 0, 0, 0.06);
 }
 
+/* ─── Country Picker (SCAFA International — 5 ccTLDs) ─── */
+.country-picker {
+  position: relative;
+}
+
+.country-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: #94A3B8;
+  cursor: pointer;
+  font-size: 12px;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+
+.country-btn:hover,
+.country-open .country-btn {
+  border-color: #6DC424;
+  background: rgba(109, 196, 36, 0.08);
+}
+
+.country-flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.country-chevron {
+  opacity: 0.6;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.country-open .country-chevron {
+  opacity: 1;
+  transform: rotate(180deg);
+  stroke: #6DC424;
+}
+
+.country-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 20, 32, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.country-dropdown-header {
+  padding: 8px 12px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6DC424;
+  border-bottom: 1px solid rgba(109, 196, 36, 0.15);
+  margin-bottom: 4px;
+}
+
+.country-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #94A3B8;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.country-option:hover {
+  background: rgba(109, 196, 36, 0.1);
+  color: #fff;
+}
+
+.country-option--active {
+  color: #6DC424;
+  font-weight: 600;
+  background: rgba(109, 196, 36, 0.06);
+}
+
+.country-option-flag {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.country-option-name {
+  flex: 1;
+}
+
+.country-option-check {
+  font-size: 8px;
+  color: #6DC424;
+  margin-left: auto;
+}
+
+/* Mobile country picker */
+.country-picker--mobile .country-dropdown {
+  position: static;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  margin-top: 8px;
+}
+
+.country-picker--mobile .country-btn {
+  padding: 8px 14px;
+}
+
+/* ─── Light Mode: Country Picker ─── */
+html[data-theme="light"] .country-btn {
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #475569;
+}
+
+html[data-theme="light"] .country-btn:hover,
+html[data-theme="light"] .country-open .country-btn {
+  border-color: #6DC424;
+  background: rgba(109, 196, 36, 0.08);
+}
+
+html[data-theme="light"] .country-dropdown {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="light"] .country-dropdown-header {
+  color: #4A8A1A;
+  border-bottom-color: rgba(74, 138, 26, 0.15);
+}
+
+html[data-theme="light"] .country-option {
+  color: #475569;
+}
+
+html[data-theme="light"] .country-option:hover {
+  background: rgba(109, 196, 36, 0.08);
+  color: #1A1A1A;
+}
+
+html[data-theme="light"] .country-option--active {
+  color: #4A8A1A;
+  background: rgba(109, 196, 36, 0.06);
+}
+
+html[data-theme="light"] .country-option-check {
+  color: #4A8A1A;
+}
+
+html[data-theme="light"] .country-picker--mobile .country-dropdown {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
 /* ─── Toggle Button ─── */
 .theme-toggle {
   display: flex;
