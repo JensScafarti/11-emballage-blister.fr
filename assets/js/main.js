@@ -417,13 +417,15 @@
       dropdown.appendChild(a);
     });
 
-    // SCAFA International Section: Deutschsprachige ccTLDs (AT + CH)
+    // SCAFA International Section: Länder-Domains (USA + AT + CH)
     var regions = [
+      { hreflang: 'en-US', flag: '🇺🇸', name: 'USA',        fallback: 'https://blisterpackaging-usa.com/' },
       { hreflang: 'de-AT', flag: '🇦🇹', name: 'Österreich', fallback: 'https://blisterverpackung.at/' },
       { hreflang: 'de-CH', flag: '🇨🇭', name: 'Schweiz',    fallback: 'https://blisterverpackung.ch/' }
     ];
     var hostname = window.location.hostname.toLowerCase();
-    var currentRegion = hostname.indexOf('blisterverpackung.at') !== -1 ? 'de-AT'
+    var currentRegion = hostname.indexOf('blisterpackaging-usa.com') !== -1 ? 'en-US'
+                      : hostname.indexOf('blisterverpackung.at') !== -1 ? 'de-AT'
                       : hostname.indexOf('blisterverpackung.ch') !== -1 ? 'de-CH' : null;
     var availableRegions = regions.filter(function (r) { return links[r.hreflang] || r.fallback; });
     if (availableRegions.length > 0) {
