@@ -784,9 +784,11 @@ textarea.form-input {
 /* ─── Section Glow Divider ─── */
 .section-glow {
   width: 100%;
-  height: 1px;
+  height: 3px;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(90deg, transparent 0%, #6DC424 25%, #4AEADC 50%, #FBBF24 75%, transparent 100%);
+  filter: drop-shadow(0 0 8px rgba(109,196,36,0.55));
 }
 
 .section-glow::before {
