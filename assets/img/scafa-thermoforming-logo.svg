@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" fill="none">
+  <!-- SCAFA Logo Mark — Geometric S formed by thermoforming mold layers -->
+  <g>
+    <!-- Outer container: rounded square with green border -->
+    <rect x="1" y="4" width="40" height="40" rx="10" fill="#0A0E17" stroke="#6DC424" stroke-width="2"/>
+
+    <!-- Stylized S made from 3 layered sheets (thermoforming reference) -->
+    <!-- Top sheet -->
+    <path d="M28 14H16c-2.2 0-4 1.8-4 4v0c0 1.1.9 2 2 2h16" stroke="#6DC424" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <!-- Middle connector -->
+    <path d="M30 20v4c0 1.1-.9 2-2 2H14" stroke="#6DC424" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <!-- Bottom sheet -->
+    <path d="M14 26h12c2.2 0 4 1.8 4 4v0c0 1.1-.9 2-2 2H16" stroke="#6DC424" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Depth indicator dots (mold precision) -->
+    <circle cx="12" cy="14" r="1.5" fill="#6DC424" opacity="0.4"/>
+    <circle cx="30" cy="34" r="1.5" fill="#6DC424" opacity="0.4"/>
+  </g>
+
+  <!-- SCAFA wordmark in Orbitron style -->
+  <text x="52" y="21" font-family="'Orbitron', 'Segoe UI', system-ui, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" letter-spacing="3">SCAFA</text>
+
+  <!-- THERMOFORMING subtitle -->
+  <text x="52" y="37" font-family="'Orbitron', 'Segoe UI', system-ui, sans-serif" font-size="10" font-weight="500" fill="#6DC424" letter-spacing="4.5">THERMOFORMING</text>
+</svg>
