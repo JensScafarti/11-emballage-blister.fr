@@ -1847,3 +1847,16 @@ html[data-theme="light"] .scafa-intl-link--active {
   color: #4A8A1A;
   background: rgba(109, 196, 36, 0.08);
 }
+
+/* ─── BookNoFees Logo (Footer Gruppe) — 1:1 nach booknofees.com brand.tsx ─── */
+.bnf-li { padding-top: .5rem; }
+.bnf-logo { display: inline-flex; align-items: center; gap: .4rem; color: #E4114E; text-decoration: none; border-radius: 4px; transition: transform .15s; }
+.bnf-logo__mark { flex: none; width: 22px; height: 22px; }
+.bnf-logo__wm { display: inline-flex; align-items: center; font-family: "DM Sans", system-ui, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -.03em; line-height: 1; color: #FFFFFF; white-space: nowrap; transition: color .25s; }
+.bnf-logo__no { display: inline-flex; align-items: center; justify-content: center; width: 1.4em; height: 1.4em; margin: 0 .1em; border-radius: 50%; background: #E4114E; color: #FFFFFF; font-size: .6em; font-weight: 700; letter-spacing: 0; }
+.bnf-logo:hover .bnf-logo__wm, .bnf-logo:focus-visible .bnf-logo__wm { color: #E4114E; }
+.bnf-logo:focus-visible { outline: 2px solid #E4114E; outline-offset: 4px; }
+.bnf-logo:active { transform: scale(.98); }
+.bnf-claim { display: block; margin-top: .35rem; font-size: 12px; line-height: 1.4; color: #94A3B8; }
+html[data-theme="light"] .bnf-logo__wm { color: #222222; }
+html[data-theme="light"] .bnf-claim { color: #475569; }
