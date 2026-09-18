@@ -1866,3 +1866,15 @@ html[data-theme="light"] .bnf-claim { color: #475569; }
 .bnf-claim-link:hover { opacity: .75; }
 .bnf-claim-link:focus-visible { outline: 2px solid #E4114E; outline-offset: 3px; }
 html[data-theme="light"] .bnf-claim-link { color: #C90E44; border-bottom-color: rgba(201,14,68,.35); }
+
+/* Vermieter-Link (Hosts-Seite der Länderdomain) unter dem International-Link */
+.bnf-host-link { display: table; margin-top: .4rem; font-size: 12px; line-height: 1.4; color: #E2E8F0; text-decoration: none; border-bottom: 1px solid rgba(255,90,114,.35); padding-bottom: 1px; transition: opacity .2s; }
+.bnf-host-link:hover { opacity: .75; }
+.bnf-host-link:active { opacity: .6; }
+.bnf-host-link:focus-visible { outline: 2px solid #E4114E; outline-offset: 3px; }
+html[data-theme="light"] .bnf-host-link { color: #1F2937; border-bottom-color: rgba(201,14,68,.35); }
+
+/* The button covers the last footer links on phones; leave room under them */
+@media (max-width: 1023px) {
+  footer:has(~ .floating-phone-cta) { padding-bottom: 6rem; }
+}
